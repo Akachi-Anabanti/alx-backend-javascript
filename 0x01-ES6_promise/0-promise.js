@@ -1,6 +1,7 @@
 export default function getResponseFromAPI() {
-	return new Promise((resolve, reject) => {
-		let condition = true;
-		condition ? resolve("success") : reject("failure")
-	})
+  return new Promise((resolve, reject) => {
+    const condition = true;
+    // eslint-disable-next-line no-unused-expressions, prefer-promise-reject-errors
+    condition ? resolve('success') : reject('failure');
+  });
 }
