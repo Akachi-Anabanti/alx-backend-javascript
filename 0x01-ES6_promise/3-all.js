@@ -6,6 +6,6 @@ export default async function handleProfileSignup() {
     const { body } = await uploadPhoto();
     console.log(body, firstName, lastName);
   } catch (e) {
-    console.log(new Error('Signup system offline'));
+    console.log('Signup system offline');
   }
 }
