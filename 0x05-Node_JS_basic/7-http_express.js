@@ -1,0 +1,76 @@
+// a more complex HTTP server using
+//
+const express = require('express');
+const fs = require('fs');
+
+const PORT = 1245;
+
+const app = express();
+
+const DB = process.argv.length > 2 ? process.argv[2] : '';
+
+const countStudents = (filePath) => new Promise((resolve, reject) => {
+  if (!filePath) {
+    reject(new Error('Cannot load the database'));
+  }
+  if (filePath) {
+    fs.readFile(filePath, (err, data) => {
+      if (err) {
+        reject(new Error('Cannot load the database'));
+      }
+
+      if (data) {
+        const reportParts = [];
+
+        const lines = data.toString('utf-8').trim().split('\n');
+
+        const students = lines.slice(1);
+
+        reportParts.push(`Number of students: ${students.length}`);
+
+        const fields = {};
+
+        students.forEach((student) => {
+          const [firstName, , , field] = student.split(',');
+          if (!fields[field]) {
+            fields[field] = { count: 0, list: [] };
+          }
+          fields[field].count += 1;
+          fields[field].list.push(firstName);
+        });
+
+        Object.entries(fields).forEach(([field, { count, list }]) => {
+          reportParts.push(`Number of students in ${field}: ${count}. List: ${list.join(', ')}`);
+        });
+        resolve(reportParts.join('\n'));
+      }
+    });
+  }
+});
+
+app.get('/', (req, res) => {
+  const responseText = 'Hello Holberton School!';
+  res.send(responseText);
+});
+
+app.get('/students', (req, res) => {
+  const responseParts = ['This is the list of our students'];
+
+  countStudents(DB)
+    .then((report) => {
+      responseParts.push(report);
+      const responseText = responseParts.join('\n');
+      res.send(responseText);
+    })
+    .catch((err) => {
+      responseParts.push(err instanceof Error ? err.message : err.toString());
+      const responseText = responseParts.join('\n');
+      res.send(responseText);
+    });
+});
+
+app.listen(PORT, () => {
+  console.log(`App is running on port: ${PORT}`);
+});
+
+module.exports = app;
