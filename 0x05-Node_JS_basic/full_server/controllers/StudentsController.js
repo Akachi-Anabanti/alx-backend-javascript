@@ -13,9 +13,8 @@ class StudentsController {
         });
         res.status(200).send(reportParts.join('\n'));
       })
-      .catch((error) => {
-        reportParts.push(error);
-        res.send(reportParts.join('\n'));
+      .catch((err) => {
+        res.status(500).send(err instanceof Error ? err.message : err.toString());
       });
   }
 
