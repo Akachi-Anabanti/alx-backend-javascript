@@ -8,7 +8,7 @@ function calculateNumber(a, b) {
   if (typeof a != 'number' || typeof b != 'number') {
     throw new Error("Two number arguments are expected");
   }
-  return Math.ceil(Number(a) + Number(b));
+  return Math.round(Number(a)) + Math.round(Number(b));
 }
 
 
