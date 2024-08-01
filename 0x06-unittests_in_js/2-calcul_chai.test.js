@@ -1,15 +1,13 @@
 // test case for 1-calcul
-//
 
 const assert = require('assert');
 const calculateNumber = require('./1-calcul');
-
 const chai = require('chai');
 const expect = chai.expect;
 
 
 describe("calculateNumber funtion", function() {
-describe("calculateNumber function with type SUM", function() {
+describe("type == SUM", function() {
   it("should return the sum of two numbers", function() {
     expect(calculateNumber("SUM", 2, 3)).to.equal(5);
   });
@@ -31,7 +29,7 @@ describe("calculateNumber function with type SUM", function() {
   });
 });
 
-describe('calculateNumber function with type SUBTRACT', function() {
+describe('type == SUBTRACT', function() {
   it('should correctly subtract two whole numbers', function() {
     expect(calculateNumber('SUBTRACT', 5, 3)).to.equal(2);
   });
@@ -57,7 +55,7 @@ describe('calculateNumber function with type SUBTRACT', function() {
   });
 });
 
-describe('calculateNumber function with type DIVIDE', function() {
+describe('type == DIVIDE', function() {
   it('should correctly divide two whole numbers', function() {
     expect(calculateNumber('DIVIDE', 8, 2)).to.equal(4);
   });
@@ -83,7 +81,7 @@ describe('calculateNumber function with type DIVIDE', function() {
   });
 });
 
-describe('calculateNumber function DIVIDE by zero', function() {
+describe('type == DIVIDE by zero', function() {
   it('should return "Error" when dividing by zero', function() {
     expect(calculateNumber('DIVIDE', 5, 0)).to.equal('Error');
   });
