@@ -7,6 +7,8 @@ const calculateNumber = require('./1-calcul');
 const chai = require('chai');
 const expect = chai.expect;
 
+
+describe("calculateNumber funtion", function() {
 describe("calculateNumber function with type SUM", function() {
   it("should return the sum of two numbers", function() {
     expect(calculateNumber("SUM", 2, 3)).to.equal(5);
@@ -106,4 +108,5 @@ describe("calculateNumber function Error test", function(){
   it("should throw invalid type error", function(){
     expect(() => calculateNumber("POW", 2, 3)).to.throw();
   });
+});
 })
