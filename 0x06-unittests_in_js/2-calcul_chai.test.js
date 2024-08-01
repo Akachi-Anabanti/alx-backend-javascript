@@ -7,7 +7,7 @@ const expect = chai.expect;
 
 
 describe("calculateNumber funtion", function() {
-describe("type == SUM", function() {
+describe("type == 'SUM'", function() {
   it("should return the sum of two numbers", function() {
     expect(calculateNumber("SUM", 2, 3)).to.equal(5);
   });
@@ -29,7 +29,7 @@ describe("type == SUM", function() {
   });
 });
 
-describe('type == SUBTRACT', function() {
+describe('type == "SUBTRACT"', function() {
   it('should correctly subtract two whole numbers', function() {
     expect(calculateNumber('SUBTRACT', 5, 3)).to.equal(2);
   });
@@ -55,7 +55,7 @@ describe('type == SUBTRACT', function() {
   });
 });
 
-describe('type == DIVIDE', function() {
+describe('type == "DIVIDE"', function() {
   it('should correctly divide two whole numbers', function() {
     expect(calculateNumber('DIVIDE', 8, 2)).to.equal(4);
   });
